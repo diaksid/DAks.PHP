@@ -1,18 +1,36 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-    <div class="container">
-        <h1>DAks PHP</h1>
+    <div class="partial partial--00">
+        <div class="container pt-5">
+            <h1>DAks PHP</h1>
+        </div>
     </div>
 
-    <div class="container pt-5">
-        {% set n = 10 %}
-        <div class="row">
-            {% for i in 0..n %}
-                <div class="col-4 mb-4">
-                    <p>* {{ i }}</p>
-                </div>
-            {% endfor %}
+    <div class="partial partial--01">
+        <div class="container pt-5">
+            <canvas class="lazyload mb-3"
+                    width=256
+                    height=256
+                    data-light
+                    data-href="/assets/{{ manifest['icon.png'] }}"
+                    data-lazy="/assets/{{ manifest['icon.png'] }}"></canvas>
+        </div>
+    </div>
+
+    <div class="partial partial--02">
+        <div class="container pt-5">
+            <div class="row">
+                {% for i in 0..20 %}
+                    <div class="col-4 mb-4">
+                        {#<p>* {{ i }}</p>#}
+                        <canvas class="lazyload lazyload--fluid"
+                                width=600
+                                height=450
+                                data-lazy="https://picsum.photos/600/450?image={{ i * 3 + 1 }}"></canvas>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}

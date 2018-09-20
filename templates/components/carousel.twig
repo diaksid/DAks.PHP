@@ -6,24 +6,14 @@
     <style>
         .carousel-item .icon {
             display: block;
+            vertical-align: top;
             color: #777;
             font-size: 30vmin;
         }
-
         .carousel-item .icon-__logo {
+            margin-top: 3vmin;
             color: #555;
             font-size: 15vmin;
-        }
-
-        .carousel__more {
-            position: absolute;
-            right: 2rem;
-            bottom: 4rem;
-        }
-
-        .carousel__more .icon {
-            display: block;
-            font-size: 2rem;
         }
     </style>
 
@@ -46,6 +36,10 @@
                      data-carousel-lazy="https://picsum.photos/600/450?image={{ random(1..99) }}"></div> #}
                 <div class="p-5">
                     {{ icon(k[i] ~ ' wow zoomIn', {'data-wow-delay': '.5s'}) }}
+                </div>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Slide {{i + 1 }}</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 </div>
             </div>
         {% endfor %}

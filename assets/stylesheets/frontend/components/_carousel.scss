@@ -30,3 +30,19 @@
 .carousel-caption {
   color: $gray-900;
 }
+
+.carousel__more {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 12rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .icon {
+    display: block;
+    font-size: 2rem;
+  }
+}
