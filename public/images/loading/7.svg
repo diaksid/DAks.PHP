@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="24"
+     height="30"
+     viewBox="0 0 24 30"
+     fill="#ff6700"
+     enable-background="new 0 0 50 50"
+>
+    <rect x="0"
+          y="5.6598"
+          width="4"
+          height="18.6804"
+          opacity="0.2"
+    >
+        <animate attributeType="xml"
+                 attributeName="opacity"
+                 values="0.2; 1; .2"
+                 begin="0s"
+                 dur="0.6s"
+                 repeatCount="indefinite"/>
+        <animate attributeType="xml"
+                 attributeName="height"
+                 values="10; 20; 10"
+                 begin="0s"
+                 dur="0.6s"
+                 repeatCount="indefinite"/>
+        <animate attributeType="xml"
+                 attributeName="y"
+                 values="10; 5; 10"
+                 begin="0s"
+                 dur="0.6s"
+                 repeatCount="indefinite"/>
+    </rect>
+    <rect x="8"
+          y="8.1598"
+          width="4"
+          height="13.6804"
+          opacity="0.2"
+    >
+        <animate attributeType="xml"
+                 attributeName="opacity"
+                 values="0.2; 1; .2"
+                 begin="0.15s"
+                 dur="0.6s"
+                 repeatCount="indefinite"/>
+        <animate attributeType="xml"
+                 attributeName="height"
+                 values="10; 20; 10"
+                 begin="0.15s"
+                 dur="0.6s"
+                 repeatCount="indefinite"/>
+        <animate attributeType="xml"
+                 attributeName="y"
+                 values="10; 5; 10"
+                 begin="0.15s"
+                 dur="0.6s"
+                 repeatCount="indefinite"/>
+    </rect>
+    <rect x="16"
+          y="9.3402"
+          width="4"
+          height="11.3196"
+          opacity="0.2"
+    >
+        <animate attributeType="xml"
+                 attributeName="opacity"
+                 values="0.2; 1; .2"
+                 begin="0.3s"
+                 dur="0.6s"
+                 repeatCount="indefinite"/>
+        <animate attributeType="xml"
+                 attributeName="height"
+                 values="10; 20; 10"
+                 begin="0.3s"
+                 dur="0.6s"
+                 repeatCount="indefinite"/>
+        <animate attributeType="xml"
+                 attributeName="y"
+                 values="10; 5; 10"
+                 begin="0.3s"
+                 dur="0.6s"
+                 repeatCount="indefinite"/>
+    </rect>
+</svg>

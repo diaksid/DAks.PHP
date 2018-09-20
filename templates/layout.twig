@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+
+<head>
+{% htmlcompress %}
+{% include 'components/head.twig' %}
+{% endhtmlcompress %}
+</head>
+
+<body>
+{% htmlcompress %}
+{% include 'components/header.twig' %}
+
+{{ block('content') }}
+
+{% include 'components/footer.twig' %}
+{% endhtmlcompress %}

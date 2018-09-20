@@ -1,0 +1,32 @@
+.carousel {
+  margin-left: $drawer-min-width;
+
+  @include media-breakpoint-down(xs) {
+    display: none;
+  }
+
+  .lazyload {
+    width: 100%;
+    height: 100%;
+    &[data-lazyload=loading] {
+      background-size: 10%;
+      background-image: url("/images/loading/7.svg") !important;
+    }
+  }
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.carousel-item {
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+}
+
+.carousel-caption {
+  color: $gray-900;
+}

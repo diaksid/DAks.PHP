@@ -1,0 +1,33 @@
+$lazyload-data-key: 'lazyload' !default;
+
+.#{$lazyload-data-key} {
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgba(192, 192, 192, .3);
+
+  &[data-#{$lazyload-data-key}=loading] {
+    background-size: 15%;
+    background-image: url("/images/loading/0.svg") !important;
+  }
+
+  &[data-#{$lazyload-data-key}=error] {
+    background-size: contain;
+    background-image: url("/images/system/error.svg") !important;
+  }
+
+  &[data-#{$lazyload-data-key}=loaded] {
+    background-color: transparent;
+    background-size: cover;
+  }
+
+  &[data-#{$lazyload-data-key}=reset] {
+    background-size: contain;
+    background-image: url("/images/system/image.svg");
+  }
+
+  &--fluid {
+    max-width: 100%;
+    height: auto;
+  }
+}

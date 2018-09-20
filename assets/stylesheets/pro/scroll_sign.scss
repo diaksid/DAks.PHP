@@ -1,0 +1,33 @@
+$scroll-sign-data-key: 'scroll-sign' !default;
+
+[data-#{$scroll-sign-data-key}] {
+  position: fixed;
+  z-index: $zindex-fixed;
+  right: 2 * $spacer;
+  bottom: 2 * $spacer;
+  width: 4rem;
+  height: 4rem;
+  padding: .5rem;
+  background-color: rgba(0, 0, 0, .025);
+  border: 1px solid rgba(0, 0, 0, .05);
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: .35;
+  transform: rotate(0deg) scale(0);
+  transition: .4s 0s linear;
+  transition-property: transform, opacity;
+  will-change: transform, opacity;
+
+  &.show {
+    transform: rotate(360deg) scale(1);
+    &:hover {
+      background-color: rgba(0, 0, 0, .1);
+      opacity: .7;
+      transform: scale(1.1);
+    }
+  }
+
+  .icon {
+    font-size: 3rem;
+  }
+}

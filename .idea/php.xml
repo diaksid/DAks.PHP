@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/twig/twig" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/matthiasmullie/path-converter" />
+      <path value="$PROJECT_DIR$/vendor/matthiasmullie/minify" />
+      <path value="$PROJECT_DIR$/vendor/wyrihaximus/html-compress" />
+      <path value="$PROJECT_DIR$/vendor/websharks/css-minifier" />
+      <path value="$PROJECT_DIR$/vendor/patchwork/jsqueeze" />
+      <path value="$PROJECT_DIR$/vendor/linkorb/jsmin-php" />
+      <path value="$PROJECT_DIR$/vendor/jalle19/php-yui-compressor" />
+      <path value="$PROJECT_DIR$/vendor/tedivm/jshrink" />
+      <path value="$PROJECT_DIR$/vendor/nochso/html-compress-twig" />
+      <path value="$PROJECT_DIR$/vendor/natxet/CssMin" />
+      <path value="$PROJECT_DIR$/vendor/meenie/javascript-packer" />
+      <path value="$PROJECT_DIR$/vendor/nervo/yuicompressor" />
+      <path value="$PROJECT_DIR$/vendor/vlucas/phpdotenv" />
+    </include_path>
+  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />
+</project>

@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="24"
+     height="30"
+     viewBox="0 0 24 30"
+     fill="#ff6700"
+     enable-background="new 0 0 50 50"
+>
+    <rect x="0"
+          y="8.72176"
+          width="4"
+          height="13.5565"
+    >
+        <animate attributeType="xml"
+                 attributeName="height"
+                 values="5;21;5"
+                 begin="0s"
+                 dur="0.6s"
+                 repeatCount="indefinite"/>
+        <animate attributeType="xml"
+                 attributeName="y"
+                 values="13; 5; 13"
+                 begin="0s"
+                 dur="0.6s"
+                 repeatCount="indefinite"/>
+    </rect>
+    <rect x="10"
+          y="5.27824"
+          width="4"
+          height="20.4435"
+    >
+        <animate attributeType="xml"
+                 attributeName="height"
+                 values="5;21;5"
+                 begin="0.15s"
+                 dur="0.6s"
+                 repeatCount="indefinite"/>
+        <animate attributeType="xml"
+                 attributeName="y"
+                 values="13; 5; 13"
+                 begin="0.15s"
+                 dur="0.6s"
+                 repeatCount="indefinite"/>
+    </rect>
+    <rect x="20"
+          y="9.27824"
+          width="4"
+          height="12.4435"
+    >
+        <animate attributeType="xml"
+                 attributeName="height"
+                 values="5;21;5"
+                 begin="0.3s"
+                 dur="0.6s"
+                 repeatCount="indefinite"/>
+        <animate attributeType="xml"
+                 attributeName="y"
+                 values="13; 5; 13"
+                 begin="0.3s"
+                 dur="0.6s"
+                 repeatCount="indefinite"/>
+    </rect>
+</svg>

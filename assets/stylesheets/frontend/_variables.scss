@@ -1,0 +1,5 @@
+$drawer-icon-size: 1.5rem !default;
+$drawer-icon-gutter: 1rem !default;
+$drawer-tile-width: 14rem !default;
+$drawer-min-width: $drawer-icon-size + 2 * $drawer-icon-gutter !default;
+$drawer-max-width: $drawer-min-width + $drawer-tile-width !default;
