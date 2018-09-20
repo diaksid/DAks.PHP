@@ -1,0 +1,55 @@
+<div class="modal-mail modal fade"
+     role="dialog"
+     tabindex="-1"
+     aria-labelledby="modal-mail-label"
+     aria-hidden="true"
+>
+    <div class="modal-dialog"
+         role="document"
+    >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="modal-mail-label"
+                    class="modal-title"
+                >New message</h5>
+                <button class="close"
+                        type="button"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                >
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label class="col-form-label"
+                               for="recipient-name"
+                        >Recipient:</label>
+                        <input id="recipient-name"
+                               class="form-control"
+                               type="text">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label"
+                               for="recipient-text"
+                        >Message:</label>
+                        <textarea id="recipient-text"
+                                  class="form-control"></textarea>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary"
+                        type="button"
+                        data-dismiss="modal"
+                >Close</button>
+                <button class="btn btn-primary"
+                        type="button"
+                >Send message</button>
+            </div>
+        </div>
+    </div>
+</div>
