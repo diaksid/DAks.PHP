@@ -1,49 +1,52 @@
 <aside class="drawer drawer--mini">
     <nav class="nav nav-pills flex-column">
+        <div class="drawer__toggle">
+            {{ icon('menu drawer__icon') }}
+        </div>
+        <a class="btn btn-link nav-link"
+           href=".partial--00"
+           data-scroll-to
+        >
+            {{ icon('apps drawer__icon') }}
+            <span>Home</span>
+        </a>
 
+        <a class="btn btn-link nav-link"
+           href=".partial--01"
+           data-scroll-to
+        >
+            {{ icon('security drawer__icon') }}
+            <span>About</span>
+        </a>
+
+        <a class="btn btn-link nav-link"
+           href=".partial--02"
+           data-scroll-to
+        >
+            {{ icon('important_devices drawer__icon') }}
+            <span>Portfolio</span>
+        </a>
+
+        <div class="btn btn-link nav-link dropdown-toggle"
+             data-toggle="collapse"
+             data-target=".drawer__page-submenu"
+             aria-expanded="false"
+        >
+            {{ icon('import_contacts drawer__icon') }}
+            <span>Pages</span>
+            <div class="drawer__page-submenu collapse">
+                <div class="btn btn-link dropdown-item">Page 1</div>
+                <div class="btn btn-link dropdown-item">Page 2</div>
+                <div class="btn btn-link dropdown-item">Page 3</div>
+            </div>
+        </div>
+
+        <div class="btn btn-link nav-link"
+             data-toggle="modal"
+             data-target=".modal-mail"
+        >
+            {{ icon('mail_outline drawer__icon') }}
+            <span>Contact</span>
+        </div>
     </nav>
 </aside>
-<div class="drawer__toggle">
-    {{ icon('menu', {class: 'drawer__icon'}) }}
-</div>
-
-a.btn.btn-link.nav-link(
-href='#_00'
-data-scroll-to
-)
-+icon('apps').drawer__icon
-span Home
-
-a.btn.btn-link.nav-link(
-href='#_01'
-data-scroll-to
-)
-+icon('security').drawer__icon
-span About
-
-a.btn.btn-link.nav-link(
-href='#_02'
-data-scroll-to
-)
-+icon('important_devices').drawer__icon
-span Portfolio
-
-.btn.btn-link.nav-link.dropdown-toggle(
-data-toggle='collapse'
-data-target='#pageSubmenu'
-aria-expanded='false'
-class='dropdown-toggle'
-)
-+icon('import_contacts').drawer__icon
-span Pages
-#pageSubmenu.collapse
-.btn.btn-link.dropdown-item Page 1
-.btn.btn-link.dropdown-item Page 2
-.btn.btn-link.dropdown-item Page 3
-
-.btn.btn-link.nav-link(
-data-toggle='modal'
-data-target='.modal-mail'
-)
-+icon('mail_outline').drawer__icon
-span Contact

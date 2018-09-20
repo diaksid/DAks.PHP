@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 
-<html lang="ru"
-      itemscope
-      itemtype="http://schema.org/WebPage">
+<html lang="ru" itemscope itemtype="http://schema.org/WebPage">
 
 <head>
-{# htmlcompress #}
+{% htmlcompress %}
 {% include 'components/head.twig' %}
-{# endhtmlcompress #}
+{% endhtmlcompress %}
 </head>
 
 <body>
-{# htmlcompress #}
+{% htmlcompress %}
 {% include 'components/header.twig' %}
 
-<main role="main">{{ block('content') }}</main>
+<main role="main">
+{{ block('content') }}
+</main>
 
 
 {% include 'components/footer.twig' %}
+{% include 'components/drawer.twig' %}
 
 {#
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -29,4 +30,4 @@
         crossorigin="anonymous"></script>
 #}
 <script src="/assets/{{ manifest['app.js'] }}"></script>
-{# endhtmlcompress #}
+{% endhtmlcompress %}
