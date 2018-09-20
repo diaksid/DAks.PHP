@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 
-<html lang="ru" itemscope itemtype="http://schema.org/WebPage">
+<html lang="ru"
+      itemscope
+      itemtype="http://schema.org/WebPage">
 
 <head>
 {% htmlcompress %}
@@ -12,7 +14,8 @@
 {% htmlcompress %}
 {% include 'components/carousel.twig' %}
 
-<main role="main">
+<main role="main"
+      itemprop="mainContentOfPage">
 {{ block('content') }}
 </main>
 
