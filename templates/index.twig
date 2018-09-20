@@ -2,6 +2,22 @@
 
 {% block content %}
     <div class="container">
-        <h1>DAks PHP</h1>
+        <style scoped>
+            .icon {
+                vertical-align: baseline;
+                font-size: inherit;
+            }
+        </style>
+        <h1>DAks PHP {{ icon('apps') }}</h1>
+    </div>
+
+    <div class="container pt-5">
+        <div class="row">
+            {% for i in 0..10 %}
+                <div class="col-4 mb-4">
+                    <p>* {{ i }}</p>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

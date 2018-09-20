@@ -14,13 +14,9 @@ $twig = new Twig_Environment($loader, [
 
 $twig->addExtension(new \nochso\HtmlCompressTwig\Extension());
 
-$icon = function ($type, $class = null) {
-    return '<span class="icon icon-' . $type . ($class ? ' ' . $class : '') . '" aria-hidden="true"></span>';
-};
-$icon = new Twig_Function('icon', $icon, [
-    'is_safe' => ['all']
-]);
-$twig->addFunction($icon);
+require_once '../includes/twig.php';
+
+$twig->addFunction(PRO\Twig\Fn::icon());
 
 echo $twig->render('index.twig', [
     'manifest' => $manifest

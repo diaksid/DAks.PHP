@@ -1,0 +1,49 @@
+<aside class="drawer drawer--mini">
+    <nav class="nav nav-pills flex-column">
+
+    </nav>
+</aside>
+<div class="drawer__toggle">
+    {{ icon('menu', {class: 'drawer__icon'}) }}
+</div>
+
+a.btn.btn-link.nav-link(
+href='#_00'
+data-scroll-to
+)
++icon('apps').drawer__icon
+span Home
+
+a.btn.btn-link.nav-link(
+href='#_01'
+data-scroll-to
+)
++icon('security').drawer__icon
+span About
+
+a.btn.btn-link.nav-link(
+href='#_02'
+data-scroll-to
+)
++icon('important_devices').drawer__icon
+span Portfolio
+
+.btn.btn-link.nav-link.dropdown-toggle(
+data-toggle='collapse'
+data-target='#pageSubmenu'
+aria-expanded='false'
+class='dropdown-toggle'
+)
++icon('import_contacts').drawer__icon
+span Pages
+#pageSubmenu.collapse
+.btn.btn-link.dropdown-item Page 1
+.btn.btn-link.dropdown-item Page 2
+.btn.btn-link.dropdown-item Page 3
+
+.btn.btn-link.nav-link(
+data-toggle='modal'
+data-target='.modal-mail'
+)
++icon('mail_outline').drawer__icon
+span Contact
