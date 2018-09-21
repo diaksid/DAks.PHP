@@ -9,8 +9,7 @@
     >
         <form id="modal-mail__form"
               class="modal-content"
-              action="mail.php"
-              enctype="multipart/form-data">
+              action="mail.php">
             <div class="modal-header">
                 <h5 id="modal-mail-label"
                     class="modal-title"
@@ -31,6 +30,7 @@
                            class="form-control"
                            type="email"
                            placeholder="Электронный адрес"
+                           value="aaa@bbb.ccc"
                            name="email">
                     <small class="form-text text-muted text-right">корректный электронный адрес</small>
                 </div>
@@ -42,13 +42,14 @@
                               class="form-control"
                               rows=4
                               placeholder="Сообщение"
-                              name="message"></textarea>
+                              name="message">1234567</textarea>
                     <small class="form-text text-muted text-right">от 3 до 256 символов</small>
                 </div>
                 <div class="form-group form-check">
                     <input id="modal-mail__check"
                            class="form-check-input"
                            type="checkbox"
+                           checked="checked"
                            name="check">
                     <label class="form-check-label"
                            for="modal-mail__check">Согласие</label>
@@ -62,7 +63,7 @@
                         data-dismiss="modal"
                 >Закрыть</button>
                 <button class="btn btn-primary"
-                       type="submit"
+                       type="button"
                        name="submit"
                 >Отправить</button>
             </div>

@@ -18,19 +18,33 @@ class Mailer {
   }
 
   init (test = false) {
-    this._form.addEventListener('submit', (event) => {
+    this._submit.addEventListener('click', (event) => {
       if (this._validate(true)) {
         if (test) {
           alert(this._email.value)
         } else {
-          $.ajax(this._action, {
-            email: this._email.value,
-            message: this._message.value
+          $.ajax({
+            url: this._action,
+            method: 'POST',
+            data: {
+              email: this._email.value,
+              message: this._message.value
+            }
+          }).done(data => {
+            const alert = document.getElementById('alert')
+            alert.classList.remove('alert-success', 'alert-danger')
+            data = JSON.parse(data)
+            if (data.code) {
+              alert.innerHTML = 'Сообщение отправлено!'
+              alert.classList.add('alert-success', 'show')
+            } else {
+              alert.innerHTML = data.message
+              alert.classList.add('alert-danger', 'show')
+            }
+            setTimeout(() => alert.classList.remove('show'), alert.dataset.timeout || 5000)
           })
         }
       }
-      event.preventDefault()
-      return false
     })
     return this
   }
@@ -59,6 +73,9 @@ class Mailer {
     this._check.className += ` is-${this._check.checked ? '' : 'in'}valid`
     // this._submit.disabled = !valid
     return valid
+  }
+  _submit () {
+
   }
 }
 

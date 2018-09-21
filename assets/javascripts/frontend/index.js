@@ -41,7 +41,7 @@ import Mailer from './mailer'
       .on('hidden.bs.modal', PRO.ScrollSign.show)
 
     const mailer = new Mailer('#modal-mail__form')
-    mailer.init(true)
+    mailer.init()
   })
 
   window.addEventListener('load', () => {

@@ -22,8 +22,8 @@ try {
     $mail->Port = $_ENV['MAIL_PORT'];
     // $mail->Sender = $_ENV['MAIL_USERNAME'];
 
-    $mail->setFrom($_ENV['MAIL_USERNAME'], 'aaa@bbb.ccc', true);
-    $mail->addReplyTo('aaa@bbb.ccc', null);
+    $mail->setFrom($_ENV['MAIL_USERNAME'], $_POST['email'], true);
+    $mail->addReplyTo($_POST['email'], null);
     $mail->addAddress('mail@daks.pro', 'DAaks');
     $mail->addCC('diaksid@mail.ru');
     $mail->addBCC('diaksid@gmail.com');
@@ -32,12 +32,18 @@ try {
     // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');
 
     $mail->isHTML(true);
-    $mail->Subject = 'Here is the subject';
-    $mail->Body = 'This is the HTML message body <b>in bold!</b>';
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+    $mail->Subject = '[daks_php]';
+    $mail->Body = $_POST['message'];
+    $mail->AltBody = strip_tags($_POST['message']);
 
     // $mail->send();
-    echo 'Message has been sent';
+    echo json_encode([
+        'code' => true,
+        'message' => 'Message has been sent'
+    ]);
 } catch (Exception $e) {
-    echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+    echo json_encode([
+        'code' => false,
+        'message' => $mail->ErrorInfo
+    ]);
 }
