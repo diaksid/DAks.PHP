@@ -18,7 +18,7 @@ const config = {
 }
 
 module.exports = (env, argv) => {
-  process.env.NODE_ENV = env || argv.mode
+  process.env.NODE_ENV = env || argv.mode || 'development'
   const debug = process.env.DEBUG = process.env.NODE_ENV !== 'production'
 
   const cssLoader = [
@@ -46,7 +46,7 @@ module.exports = (env, argv) => {
   }
 
   return {
-    mode: argv.mode,
+    mode: argv.mode || 'development',
     target: 'web',
     entry: {
       app: [

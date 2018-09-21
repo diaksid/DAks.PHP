@@ -1,6 +1,7 @@
 import $ from 'jquery'
 import WOW from 'wowjs'
-import * as PRO from './pro'
+import * as PRO from '../pro'
+import Mailer from './mailer'
 
 (($, WOW, PRO) => {
   $.scrollSign()
@@ -10,6 +11,14 @@ import * as PRO from './pro'
     wow.init()
 
     $.scrollTo()
+
+    $('[data-submit]').on('click', function () {
+      if (this.dataset.submit) {
+        document.querySelector(this.dataset.submit).submit()
+      } else {
+        this.parentNode.submit()
+      }
+    })
 
     const $draver = $('.drawer')
     const $draverCheck = () => {
@@ -30,6 +39,9 @@ import * as PRO from './pro'
     $('.modal')
       .on('show.bs.modal', PRO.ScrollSign.hide)
       .on('hidden.bs.modal', PRO.ScrollSign.show)
+
+    const mailer = new Mailer('#modal-mail__form')
+    mailer.init(true)
   })
 
   window.addEventListener('load', () => {
