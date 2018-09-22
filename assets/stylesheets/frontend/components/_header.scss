@@ -1,8 +1,9 @@
 .pro-header {
-  position: absolute;
+  position: -ms-sticky;
+  // position: sticky;
   z-index: $zindex-fixed - 1;
   top: 0;
   right: 0;
-  left: $drawer-min-width;
+  left: 0;
   border-bottom: 1px solid #dfdfdf;
 }

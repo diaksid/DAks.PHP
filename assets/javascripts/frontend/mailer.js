@@ -15,6 +15,7 @@ class Mailer {
     this._check = this._form.check
     this._check.addEventListener('change', this._validate.bind(this))
     this._checked()
+    this._flash = document.querySelector('.flash__alert')
   }
 
   init (test = false) {
@@ -23,25 +24,34 @@ class Mailer {
         if (test) {
           alert(this._email.value)
         } else {
-          $.ajax({
-            url: this._action,
+          this._submit.disabled = true
+          this._flash.className = this._flash.className.replace(/\s+alert-(success|danger)/, '')
+          $.ajax(this._action, {
             method: 'POST',
+            cache: false,
             data: {
               email: this._email.value,
               message: this._message.value
-            }
-          }).done(data => {
-            const alert = document.getElementById('alert')
-            alert.classList.remove('alert-success', 'alert-danger')
-            data = JSON.parse(data)
-            if (data.code) {
-              alert.innerHTML = 'Сообщение отправлено!'
-              alert.classList.add('alert-success', 'show')
-            } else {
-              alert.innerHTML = data.message
-              alert.classList.add('alert-danger', 'show')
-            }
-            setTimeout(() => alert.classList.remove('show'), alert.dataset.timeout || 5000)
+            },
+            timeout: 5000,
+            success: data => {
+              data = JSON.parse(data)
+              if (data.code) {
+                this._flash.innerHTML = 'Сообщение отправлено!'
+                this._flash.className += ' alert-success show'
+              } else {
+                this._flash.innerHTML = data.message
+                this._flash.className += ' alert-danger show'
+              }
+            },
+            error: err => {
+              this._flash.innerHTML = `Ошибка AJAX! [ ${err} ]`
+              this._flash.className += 'alert-danger show'
+            },
+            complete: () => setTimeout(() => {
+              this._submit.disabled = false
+              this._flash.classList.remove('show')
+            }, this._flash.dataset.timeout || 5000)
           })
         }
       }
@@ -74,6 +84,7 @@ class Mailer {
     // this._submit.disabled = !valid
     return valid
   }
+
   _submit () {
 
   }
