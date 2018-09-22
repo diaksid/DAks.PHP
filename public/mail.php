@@ -8,6 +8,17 @@ require '../vendor/autoload.php';
 $dotenv = new \Dotenv\Dotenv(dirname(__DIR__));
 $dotenv->load();
 
+session_start();
+require_once '../includes/csrf.php';
+
+if (!(isset($_SERVER['HTTP_X_CSRF_TOKEN']) && $_SERVER['HTTP_X_CSRF_TOKEN'] === \PRO\CSRF::get_token())) {
+    echo json_encode([
+        'status' => 401,
+        'message' => 'Ошибка CSRF'
+    ]);
+    exit(401);
+}
+
 $email = $_POST['email'];
 $message = $_POST['message'];
 
@@ -34,6 +45,7 @@ try {
     // $mail->addAttachment('/var/tmp/file.tar.gz');
     // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');
 
+
     $mail->isHTML(false);
     $mail->Subject = '[daks_php]';
     $mail->Body = strip_tags($message);
@@ -42,11 +54,11 @@ try {
     // $mail->send();
 
     echo json_encode([
-        'code' => true
+        'status' => 200
     ]);
 } catch (Exception $e) {
     echo json_encode([
-        'code' => false,
+        'status' => 500,
         'message' => $mail->ErrorInfo
     ]);
 }

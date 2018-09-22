@@ -1,9 +1,22 @@
-.pro-header {
-  position: -ms-sticky;
-  // position: sticky;
-  z-index: $zindex-fixed - 1;
+.header {
+  position: fixed;
+  z-index: $zindex-fixed;
   top: 0;
-  right: 0;
   left: 0;
-  border-bottom: 1px solid #dfdfdf;
+  width: 100vw;
+  padding: .25rem 2.5rem 0 ($drawer-min-width + 1rem);
+  text-align: right;
+
+  &__phone {
+    color: #999;
+    font-size: 150%;
+    text-decoration: none !important;
+    opacity: .5;
+    &:hover & {
+      color: #555;
+      opacity: 1;
+    }
+  }
+
+
 }

@@ -14,12 +14,12 @@
 {% htmlcompress %}
 {% include 'components/carousel.twig' %}
 
-{% include 'components/header.twig' %}
 <main role="main"
       itemprop="mainContentOfPage">
 {{ block('content') }}
 </main>
 
+{% include 'components/header.twig' %}
 {% include 'components/drawer.twig' %}
 {% include 'components/footer.twig' %}
 {% include 'components/mail.twig' %}

@@ -10,8 +10,9 @@
 
 <script>
     (function (window, document) {
-        var touch = window.ontouchstart || (window.DocumentTouch && document instanceof DocumentTouch);
-        document.documentElement.className = 'is-js is-touch' + (touch ? '' : '--not');
+        document.documentElement.className = 'is-js is-touch'
+          + (window.ontouchstart || (window.DocumentTouch && document instanceof DocumentTouch) ? '' : '--not')
+          + ((/msie|rv:11/i).test(navigator.userAgent) ? ' is-ie' : '')
     })(window, document)
 </script>
 {#

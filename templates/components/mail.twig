@@ -10,6 +10,9 @@
         <form id="modal-mail__form"
               class="modal-content"
               action="mail.php">
+            <input type="hidden"
+                   value="{{ csrf }}"
+                   name="csrf">
             <div class="modal-header">
                 <h5 id="modal-mail-label"
                     class="modal-title"

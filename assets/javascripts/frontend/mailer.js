@@ -6,6 +6,7 @@ class Mailer {
   constructor (selector) {
     this._form = document.querySelector(selector)
     this._action = this._form.getAttribute('action')
+    this._csrf = this._form.csrf
     this._email = this._form.email
     this._email.addEventListener('change', this._validate.bind(this))
     this._message = this._form.message
@@ -29,14 +30,15 @@ class Mailer {
           $.ajax(this._action, {
             method: 'POST',
             cache: false,
+            headers: { 'X-CSRF-Token': this._csrf.value },
             data: {
               email: this._email.value,
               message: this._message.value
             },
+            dataType: 'json',
             timeout: 5000,
             success: data => {
-              data = JSON.parse(data)
-              if (data.code) {
+              if (data.status === 200) {
                 this._flash.innerHTML = 'Сообщение отправлено!'
                 this._flash.className += ' alert-success show'
               } else {
@@ -45,7 +47,7 @@ class Mailer {
               }
             },
             error: err => {
-              this._flash.innerHTML = `Ошибка AJAX! [ ${err} ]`
+              this._flash.innerHTML = `Ошибка AJAX [ ${err} ]`
               this._flash.className += 'alert-danger show'
             },
             complete: () => setTimeout(() => {
