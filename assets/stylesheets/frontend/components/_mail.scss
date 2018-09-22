@@ -1,2 +1,16 @@
 .modal-mail {
+  .close {
+    color: $gray-700;
+  }
+
+  .icon--loading {
+    color: $gray-200;
+    font-size: 1.75rem;
+    transition: 0.125s 0s linear;
+    transition-property: color;
+    will-change: color;
+    &.icon--spin-back {
+      color: $danger;
+    }
+  }
 }

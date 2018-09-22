@@ -1,0 +1,35 @@
+.#{$icon-css-prefix}--spin {
+  &:before {
+    animation: icon-spin 2s infinite linear;
+  }
+
+  &-back {
+    &:before {
+      animation: icon-spin-back 2s infinite linear;
+    }
+  }
+}
+
+.#{$icon-css-prefix}--pulse {
+  &:before {
+    animation: icon-spin 1s infinite steps(8);
+  }
+}
+
+@keyframes icon-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes icon-spin-back {
+  0% {
+    transform: rotate(359deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}

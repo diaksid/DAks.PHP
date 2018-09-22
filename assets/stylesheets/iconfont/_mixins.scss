@@ -1,0 +1,56 @@
+@mixin icon-before() {
+  &:before {
+    display: block;
+    vertical-align: inherit;
+    font-family: "#{$icon-font-family}" !important;
+    font-size: inherit;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+  }
+}
+
+@mixin icon() {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 24px;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  font-feature-settings: 'liga';
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  @include icon-before();
+}
+
+@mixin icon-pseudo() {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  line-height: 100%;
+  @include icon-before();
+  &:before {
+    position: relative;
+    margin-right: .5em;
+    font-feature-settings: 'liga';
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@mixin icon-rotate($degrees, $rotation) {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=#{$rotation});
+  transform: rotate($degrees);
+}
+
+@mixin icon-flip($horiz, $vert, $rotation) {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=#{$rotation});
+  transform: scale($horiz, $vert);
+}

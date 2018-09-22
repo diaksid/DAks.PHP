@@ -1,0 +1,21 @@
+.list-#{$icon-css-prefix} {
+  margin-left: $icon-list-width + (4em / 16);
+  padding-left: 0;
+  list-style-type: none;
+
+  > li {
+    position: relative;
+  }
+}
+
+.#{$icon-css-prefix}--list {
+  position: absolute;
+  top: (1em / 16);
+  left: -($icon-list-width + (4em / 16));
+  width: $icon-list-width;
+  text-align: center;
+
+  &.#{$icon-css-prefix}--lg {
+    left: -$icon-list-width;
+  }
+}

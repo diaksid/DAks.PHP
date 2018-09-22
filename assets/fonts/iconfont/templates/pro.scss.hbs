@@ -1,0 +1,13 @@
+@font-face {
+font-family: "{{fontName}}";
+font-weight: normal;
+font-style: normal;
+font-variant: normal;
+src: {{{src}}};
+}
+
+{{#each codepoints}}
+  .{{../classPrefix}}{{@key}}:before {
+  content: "\\{{this}}";
+  }
+{{/each}}

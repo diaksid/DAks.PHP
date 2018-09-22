@@ -3,7 +3,7 @@ module.exports = {
     './icons/*.svg'
   ],
   fontName: 'iconfont',
-  cssTemplate: './templates/css.hbs',
+  cssTemplate: './templates/pro.scss.hbs',
   classPrefix: 'icon-',
   baseSelector: '.icon',
   types: ['eot', 'woff', 'woff2', 'ttf', 'svg'],

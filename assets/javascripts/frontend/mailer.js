@@ -16,7 +16,6 @@ class Mailer {
     this._check = this._form.check
     this._check.addEventListener('change', this._validate.bind(this))
     this._checked()
-    this._flash = document.querySelector('.flash__alert')
   }
 
   init (test = false) {
@@ -26,34 +25,40 @@ class Mailer {
           alert(this._email.value)
         } else {
           this._submit.disabled = true
-          this._flash.className = this._flash.className.replace(/\s+alert-(success|danger)/, '')
+          const loading = this._form.querySelector('.icon--loading')
+          loading.classList.add('icon--spin-back')
+          const flash = document.querySelector('.flash__alert')
+          flash.className = flash.className.replace(/\s+alert-(success|danger)/, '')
           $.ajax(this._action, {
-            method: 'POST',
             cache: false,
+            timeout: 5000,
+            method: 'POST',
             headers: { 'X-CSRF-Token': this._csrf.value },
             data: {
               email: this._email.value,
               message: this._message.value
             },
             dataType: 'json',
-            timeout: 5000,
             success: data => {
               if (data.status === 200) {
-                this._flash.innerHTML = 'Сообщение отправлено!'
-                this._flash.className += ' alert-success show'
+                flash.innerHTML = 'Сообщение отправлено!'
+                flash.className += ' alert-success show'
               } else {
-                this._flash.innerHTML = data.message
-                this._flash.className += ' alert-danger show'
+                flash.innerHTML = data.message
+                flash.className += ' alert-danger show'
               }
             },
             error: err => {
-              this._flash.innerHTML = `Ошибка AJAX [ ${err} ]`
-              this._flash.className += 'alert-danger show'
+              flash.innerHTML = `Ошибка AJAX [ ${err} ]`
+              flash.className += 'alert-danger show'
             },
-            complete: () => setTimeout(() => {
-              this._submit.disabled = false
-              this._flash.classList.remove('show')
-            }, this._flash.dataset.timeout || 5000)
+            complete: () => {
+              loading.classList.remove('icon--spin-back')
+              setTimeout(() => {
+                this._submit.disabled = false
+                flash.classList.remove('show')
+              }, flash.dataset.timeout || 5000)
+            }
           })
         }
       }
