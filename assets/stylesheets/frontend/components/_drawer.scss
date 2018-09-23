@@ -41,9 +41,11 @@
     min-width: $drawer-icon-size;
     height: $drawer-icon-size;
     margin: 0 $drawer-icon-gutter;
+    font-size: $drawer-icon-size;
   }
 
   .nav {
+    flex-wrap: nowrap;
     height: 100%;
   }
 
@@ -51,12 +53,13 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    min-height: ($btn-line-height + 2 * $nav-link-padding-y);
     padding-left: 0;
-    // color: darken($link-hover-color, 10%);
+    border: none;
     border-radius: 0;
 
     &:focus {
-      color: $cyan;
+      color: $gray-900;
     }
 
     &:hover:not(.active) {
