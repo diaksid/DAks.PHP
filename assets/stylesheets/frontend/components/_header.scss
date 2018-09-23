@@ -1,22 +1,29 @@
+$header-padding-right: calc(2 * #{$spacer} - #{$nav-link-padding-x} + 1px);
+$header-padding-left: calc(#{$grid-gutter-width / 2} - #{$nav-link-padding-x} + #{$drawer-min-width} + 1px);
+
 .header {
   position: fixed;
   z-index: $zindex-fixed;
+  display: flex;
+  justify-content: flex-end;
   top: 0;
   left: 0;
   width: 100vw;
-  padding: .25rem 2.5rem 0 ($drawer-min-width + 1rem);
-  text-align: right;
+  padding: 0 $header-padding-right 0 $header-padding-left;
+  pointer-events: none;
 
-  &__phone {
-    color: #999;
-    font-size: 150%;
+  .btn-link {
+    font-size: 1.5rem;
     text-decoration: none !important;
-    opacity: .5;
-    &:hover & {
-      color: #555;
+    opacity: 0.7;
+    pointer-events: auto;
+
+    &:hover {
       opacity: 1;
     }
   }
 
-
+  @include media-breakpoint-down(xs) {
+    //justify-content: flex-start;
+  }
 }

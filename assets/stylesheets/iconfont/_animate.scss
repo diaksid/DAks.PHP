@@ -1,17 +1,17 @@
 .#{$icon-css-prefix}--spin {
-  &:before {
+  &::before {
     animation: icon-spin 2s infinite linear;
   }
 
   &-back {
-    &:before {
+    &::before {
       animation: icon-spin-back 2s infinite linear;
     }
   }
 }
 
 .#{$icon-css-prefix}--pulse {
-  &:before {
+  &::before {
     animation: icon-spin 1s infinite steps(8);
   }
 }
@@ -20,6 +20,7 @@
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(359deg);
   }
@@ -29,6 +30,7 @@
   0% {
     transform: rotate(359deg);
   }
+
   100% {
     transform: rotate(0deg);
   }

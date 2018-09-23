@@ -1,9 +1,12 @@
-html {
-}
-
 body {
   position: relative;
 }
 
-main {
+.container {
+  padding-left: calc(#{$grid-gutter-width} / 2 + #{$drawer-min-width} / 2);
+
+  @include media-breakpoint-down(xs) {
+    padding-left: calc(#{$grid-gutter-width} / 2 + #{$drawer-min-width});
+  }
 }
+

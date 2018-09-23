@@ -1,5 +1,5 @@
 @mixin icon-before() {
-  &:before {
+  &::before {
     display: block;
     vertical-align: inherit;
     font-family: "#{$icon-font-family}" !important;
@@ -26,6 +26,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
   @include icon-before();
 }
 
@@ -34,10 +35,12 @@
   flex-direction: row;
   align-items: center;
   line-height: 100%;
+
   @include icon-before();
-  &:before {
+
+  &::before {
     position: relative;
-    margin-right: .5em;
+    margin-right: 0.5em;
     font-feature-settings: 'liga';
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -46,11 +49,11 @@
 }
 
 @mixin icon-rotate($degrees, $rotation) {
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=#{$rotation});
+  filter: progid:dximagetransform.microsoft.basicimage(rotation=#{$rotation});
   transform: rotate($degrees);
 }
 
 @mixin icon-flip($horiz, $vert, $rotation) {
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=#{$rotation});
+  filter: progid:dximagetransform.microsoft.basicimage(rotation=#{$rotation});
   transform: scale($horiz, $vert);
 }

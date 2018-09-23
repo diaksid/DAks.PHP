@@ -1,14 +1,6 @@
-.container {
-  padding-left: calc(#{$grid-gutter-width} / 2 + #{$drawer-min-width} / 2);
-
-  @include media-breakpoint-down(xs) {
-    padding-left: calc(#{$grid-gutter-width} / 2 + #{$drawer-min-width});
-  }
-}
-
 .drawer {
   position: fixed;
-  z-index: $zindex-fixed + 1;
+  z-index: $zindex-fixed;
   top: 0;
   left: 0;
   overflow-y: auto;
@@ -19,7 +11,7 @@
   height: 100%;
   padding: $spacer 0;
   background-color: $white;
-  border-right: 1px solid rgba(128, 128, 128, .5);
+  border-right: 1px solid rgba(128, 128, 128, 0.5);
   box-shadow: $box-shadow-sm;
   transition: 0.25s 0s cubic-bezier(0.4, 0, 0.2, 1);
   transition-property: width;
@@ -32,9 +24,10 @@
   }
 
   &__toggle {
-    padding: $nav-link-padding-y 0 ;
+    padding: $nav-link-padding-y 0;
     cursor: pointer;
     color: $gray-500;
+
     @include hover-focus {
       color: $gray-700;
       background-color: $gray-100;
@@ -50,6 +43,10 @@
     margin: 0 $drawer-icon-gutter;
   }
 
+  .nav {
+    height: 100%;
+  }
+
   .nav-link {
     display: flex;
     flex-direction: row;
@@ -57,17 +54,18 @@
     padding-left: 0;
     // color: darken($link-hover-color, 10%);
     border-radius: 0;
+
     &:focus {
       color: $cyan;
     }
+
     &:hover:not(.active) {
       color: $white;
-      background-color: rgba($nav-pills-link-active-bg, .7);
+      background-color: rgba($nav-pills-link-active-bg, 0.7);
     }
   }
 
   .dropdown-item {
     padding-left: $drawer-min-width;
-
   }
 }

@@ -1,11 +1,11 @@
 .#{$icon-css-prefix}--va-top {
-  &:before {
+  &::before {
     vertical-align: top;
   }
 }
 
 .#{$icon-css-prefix}--va-bottom {
-  &:before {
+  &::before {
     vertical-align: bottom;
   }
 }

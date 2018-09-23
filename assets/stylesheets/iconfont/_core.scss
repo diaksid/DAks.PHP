@@ -20,7 +20,7 @@
 }
 
 [data-#{$icon-html-attr}] {
-  &:before {
+  &::before {
     content: attr(data-#{$icon-html-attr});
   }
 }

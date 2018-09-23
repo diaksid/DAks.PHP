@@ -1,29 +1,29 @@
 .#{$icon-css-prefix}--rotate-90 {
-  &:before {
+  &::before {
     @include icon-rotate(90deg, 1);
   }
 }
 
 .#{$icon-css-prefix}--rotate-180 {
-  &:before {
+  &::before {
     @include icon-rotate(180deg, 2);
   }
 }
 
 .#{$icon-css-prefix}--rotate-270 {
-  &:before {
+  &::before {
     @include icon-rotate(270deg, 3);
   }
 }
 
 .#{$icon-css-prefix}--flip-h {
-  &:before {
+  &::before {
     @include icon-flip(-1, 1, 0);
   }
 }
 
 .#{$icon-css-prefix}--flip-v {
-  &:before {
+  &::before {
     @include icon-flip(1, -1, 2);
   }
 }
@@ -34,7 +34,7 @@
 :root .#{$icon-css-prefix}--rotate-270,
 :root .#{$icon-css-prefix}--flip-h,
 :root .#{$icon-css-prefix}--flip-v {
-  &:before {
+  &::before {
     filter: none;
   }
 }
