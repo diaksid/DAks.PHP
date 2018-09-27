@@ -21,15 +21,19 @@ import Mailer from './mailer'
     })
 
     const $draver = $('.drawer')
-    const $draverCheck = () => {
+    const draverCheck = () => {
       $draver.find('.collapse.show').removeClass('show')
       $draver.find('[aria-expanded=true]').attr('aria-expanded', 'false')
     }
+    $draver.find('.dropdown-toggle').click(() => $draver.removeClass('drawer--mini'))
     $('.drawer__toggle').click(() => {
       $draver.toggleClass('drawer--mini')
-      $draverCheck()
+      draverCheck()
     })
-    $draver.find('.dropdown-toggle').click(() => $draver.removeClass('drawer--mini'))
+    $('header, main, footer, section').click(() => {
+      $draver.addClass('drawer--mini')
+      draverCheck()
+    })
 
     $.lightbox()
     /*

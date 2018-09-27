@@ -14,8 +14,7 @@
 {% htmlcompress %}
 {% include 'components/carousel.twig' %}
 
-<main role="main"
-      itemprop="mainContentOfPage">
+<main itemprop="mainContentOfPage">
 {{ block('content') }}
 </main>
 
@@ -24,7 +23,7 @@
 {% include 'components/footer.twig' %}
 {% include 'components/mail.twig' %}
 {% include 'components/flash.twig' %}
-{% include 'components/scroll_sign.twig' %}
+{# include 'components/scroll_sign.twig' #}
 
 {#
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

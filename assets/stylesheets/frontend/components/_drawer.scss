@@ -23,10 +23,21 @@
     box-shadow: none;
   }
 
-  &__toggle {
+  &__btn {
     padding: $nav-link-padding-y 0;
     cursor: pointer;
     color: $gray-500;
+    transition: 0.4s 0s linear;
+    transition-property: transform, opacity;
+    will-change: transform, opacity;
+
+    &.fade {
+      transform: rotate(0deg) scale(0);
+
+      &.show {
+        transform: rotate(360deg) scale(1);
+      }
+    }
 
     @include hover-focus {
       color: $gray-700;
@@ -42,6 +53,7 @@
     height: $drawer-icon-size;
     margin: 0 $drawer-icon-gutter;
     font-size: $drawer-icon-size;
+    font-weight: 100;
   }
 
   .nav {
@@ -55,11 +67,12 @@
     align-items: center;
     min-height: ($btn-line-height + 2 * $nav-link-padding-y);
     padding-left: 0;
+    color: $gray-700;
     border: none;
     border-radius: 0;
 
     &:focus {
-      color: $gray-900;
+      color: $link-hover-color;
     }
 
     &:hover:not(.active) {

@@ -1,7 +1,11 @@
 $scroll-to-data-key: 'scroll-to' !default;
 
 .is-js {
-  [data-#{$scroll-to-data-key}]:not(.is-active):not(.active) {
+  [data-#{$scroll-to-data-key}]:not(.active) {
     cursor: pointer;
+
+    &.fade:not(.show) {
+      pointer-events: none;
+    }
   }
 }

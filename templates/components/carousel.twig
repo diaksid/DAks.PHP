@@ -1,24 +1,9 @@
+{% set n = 3 %}
 <section class="carousel slide"
          data-ride='carousel'
          data-interval='10000'
          data-pause
 >
-    <style>
-        .carousel-item .icon {
-            display: block;
-            vertical-align: top;
-            color: #777;
-            font-size: 30vmin;
-        }
-        .carousel-item .icon-__logo {
-            margin-top: 3vmin;
-            color: #555;
-            font-size: 15vmin;
-        }
-    </style>
-
-    {% set n = 3 %}
-
     <ol class="carousel-indicators">
         {% for i in 0..n %}
             <li data-target=".carousel"
@@ -32,15 +17,7 @@
         {% set k = ['__logo', 'apps', 'security', 'important_devices'] %}
         {% for i in 0..n %}
             <div class="carousel-item{{ i == 0 ? ' active' : '' }}">
-                {# <div class="lazyload"
-                     data-carousel-lazy="https://picsum.photos/600/450?image={{ random(1..99) }}"></div> #}
-                <div class="p-5">
-                    {{ icon(k[i] ~ ' wow zoomIn', {'data-wow-delay': '.5s'}) }}
-                </div>
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Slide {{i + 1 }}</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
+                {% include 'components/slides/' ~ i ~ '.twig' %}
             </div>
         {% endfor %}
         <div class="carousel__more wow zoomIn"

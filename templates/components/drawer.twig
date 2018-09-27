@@ -1,8 +1,9 @@
 <aside class="drawer drawer--mini">
     <nav class="nav nav-pills flex-column">
-        <div class="drawer__toggle">
+        <div class="drawer__toggle drawer__btn">
             {{ icon('menu drawer__icon') }}
         </div>
+
         <a class="btn btn-link nav-link"
            href=".partial--00"
            data-scroll-to
@@ -41,12 +42,19 @@
             <div class="btn btn-link dropdown-item">Page 3</div>
         </div>
 
-        <div class="btn btn-link nav-link mt-auto"
+        <div class="btn btn-link nav-link mt-2"
              data-toggle="modal"
              data-target=".modal-mail"
         >
             {{ icon('mail_outline drawer__icon') }}
             <span>Contact</span>
+        </div>
+
+        <div class="drawer__btn mt-auto fade"
+             data-scroll-to="#"
+             data-scroll-sign
+        >
+            {{ icon('arrow_upward drawer__icon') }}
         </div>
     </nav>
 </aside>
