@@ -1,11 +1,12 @@
 import jQuery from 'jquery'
 import '../helpers/dataset'
 
-const ScrollTo = (function (jQuery) {
+const PROscrollTo = (function (jQuery) {
   const NAME = 'scrollTo'
   const VERSION = '0.0.1'
 
   const DATA_KEY = 'scroll.to'
+  // const EVENT_KEY = `${DATA_KEY}.`
   const JQUERY_NO_CONFLICT = jQuery.fn[NAME]
 
   const Default = {
@@ -13,7 +14,7 @@ const ScrollTo = (function (jQuery) {
     duration: 1000
   }
 
-  class ScrollTo {
+  class PROscrollTo {
     constructor (options, callback) {
       [this._options, this._callback] = arguments
     }
@@ -30,8 +31,8 @@ const ScrollTo = (function (jQuery) {
           event.stopPropagation()
           if (!obj.hasClass('active') && !obj.parent().hasClass('active')) {
             selector === '#'
-              ? ScrollTo.top(options, this._callback)
-              : ScrollTo.obj(selector, options, this._callback)
+              ? PROscrollTo.top(options, this._callback)
+              : PROscrollTo.obj(selector, options, this._callback)
           }
         })
       } else {
@@ -83,22 +84,27 @@ const ScrollTo = (function (jQuery) {
     }
 
     static _jQuery () {
-      const instance = new ScrollTo(...arguments)
+      const instance = new PROscrollTo(...arguments)
       return this.each(function () {
         instance._load(this)
       })
     }
   }
 
-  jQuery.fn[NAME] = ScrollTo._jQuery
-  jQuery.fn[NAME].Constructor = ScrollTo
+  // jQuery.ScrollTo = PROscrollTo
+
+  jQuery.fn[NAME] = PROscrollTo._jQuery
+  jQuery.fn[NAME].Constructor = PROscrollTo
   jQuery.fn[NAME].noConflict = function () {
     jQuery.fn[NAME] = JQUERY_NO_CONFLICT
-    return ScrollTo._jQuery
+    return PROscrollTo._jQuery
   }
-  jQuery[NAME] = (...args) => jQuery(`[data-${jQuery.data.toKey(DATA_KEY)}]`)[NAME](...args)
+  jQuery[NAME] = function () {
+    (() => new PROscrollTo(...arguments))()
+    return this
+  }
 
-  return ScrollTo
+  return PROscrollTo
 })(jQuery)
 
-export default ScrollTo
+export default PROscrollTo

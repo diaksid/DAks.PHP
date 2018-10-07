@@ -73,6 +73,7 @@ const PROlightBox = (function (document, jQuery) {
         }
         jQuery.data.setSet(element, DATA_KEY, 'loaded')
       }
+      return this
     }
 
     _html () {

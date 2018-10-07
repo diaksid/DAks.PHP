@@ -1,6 +1,6 @@
-import $ from 'jquery'
+import jQuery from 'jquery'
 
-$.extend($.data, {
+const PROdata = {
   toKey (string, suffix) {
     if (suffix) {
       string += '.' + suffix
@@ -33,4 +33,8 @@ $.extend($.data, {
   setSet (element, key, value) {
     return (element.dataset[this.toSet(key)] = value)
   }
-})
+}
+
+jQuery.extend(jQuery.data, PROdata)
+
+export default PROdata

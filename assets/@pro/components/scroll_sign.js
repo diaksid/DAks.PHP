@@ -1,7 +1,7 @@
 import jQuery from 'jquery'
 import '../helpers/dataset'
 
-const ScrollSign = (function (jQuery) {
+const PROscrollSign = (function (jQuery) {
   const NAME = 'scrollSign'
   const VERSION = '0.0.1'
 
@@ -21,7 +21,7 @@ const ScrollSign = (function (jQuery) {
 
   const $document = jQuery(document)
 
-  class ScrollSign {
+  class PROscrollSign {
     constructor (options, callback) {
       if (typeof options === 'function') {
         callback = options
@@ -76,22 +76,27 @@ const ScrollSign = (function (jQuery) {
     }
 
     static _jQuery () {
-      const instance = new ScrollSign(...arguments)
+      const instance = new PROscrollSign(...arguments)
       return this.each(function () {
         instance._load(this)
       })
     }
   }
 
-  jQuery.fn[NAME] = ScrollSign._jQuery
-  jQuery.fn[NAME].Constructor = ScrollSign
+  // jQuery.ScrollSign = PROscrollSign
+
+  jQuery.fn[NAME] = PROscrollSign._jQuery
+  jQuery.fn[NAME].Constructor = PROscrollSign
   jQuery.fn[NAME].noConflict = function () {
     jQuery.fn[NAME] = JQUERY_NO_CONFLICT
-    return ScrollSign._jQuery
+    return PROscrollSign._jQuery
   }
-  jQuery[NAME] = (...args) => jQuery(`[data-${jQuery.data.toKey(DATA_KEY)}]`)[NAME](...args)
+  jQuery[NAME] = function () {
+    (() => new PROscrollSign(...arguments))()
+    return this
+  }
 
-  return ScrollSign
+  return PROscrollSign
 })(jQuery)
 
-export default ScrollSign
+export default PROscrollSign

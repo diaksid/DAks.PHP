@@ -1,6 +1,5 @@
 import jQuery from 'jquery'
 import '../helpers/dataset'
-import PROlightBox from "./lightbox";
 
 const PROlazyLoad = (function (window, document, jQuery) {
   const NAME = 'lazyload'
@@ -64,6 +63,7 @@ const PROlazyLoad = (function (window, document, jQuery) {
         item._appear()
         this._items.push(item)
       }
+      return this
     }
 
     _update () {

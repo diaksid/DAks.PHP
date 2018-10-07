@@ -70,6 +70,7 @@ module.exports = (env, argv) => {
       enforceExtension: false,
       extensions: ['.js', '.json', '.css', '.scss'],
       alias: {
+        '@pro': path.join(config.path.src, '@pro'),
         'images': path.join(config.path.src, 'images'),
         'stylesheets': path.join(config.path.src, 'stylesheets'),
         'javascripts': path.join(config.path.src, 'javascripts')
