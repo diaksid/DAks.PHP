@@ -1,6 +1,11 @@
-import ScrollSign from './scroll_sign'
-import ScrollTo from './scroll_to'
-import Lazyload from './lazyload'
-import Lightbox from './lightbox'
+import ScrollSign from './components/scroll_sign'
+import ScrollTo from './components/scroll_to'
+import Lazyload from './components/lazyload'
+import LightBox from './components/lightbox'
 
-export { ScrollSign, ScrollTo, Lazyload, Lightbox }
+export {
+  ScrollSign,
+  ScrollTo,
+  Lazyload,
+  LightBox
+}

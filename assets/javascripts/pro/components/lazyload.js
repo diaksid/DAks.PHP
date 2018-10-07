@@ -1,7 +1,8 @@
 import jQuery from 'jquery'
-import Util from './util'
+import '../helpers/dataset'
+import PROlightBox from "./lightbox";
 
-const Lazyload = ((jQuery, Util, window, document) => {
+const PROlazyLoad = (function (window, document, jQuery) {
   const NAME = 'lazyload'
   const VERSION = '0.0.3'
   const JQUERY_NO_CONFLICT = jQuery.fn[NAME]
@@ -17,6 +18,8 @@ const Lazyload = ((jQuery, Util, window, document) => {
 
   const Default = {
     attribute: 'lazy',
+    scope: null,
+    event: 'scroll',
     duration: 1000,
     delay: 250,
     threshold: 0,
@@ -27,36 +30,40 @@ const Lazyload = ((jQuery, Util, window, document) => {
     // mask: "data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ccc' fill-opacity='.2' height='100%' width='100%'/%3E%3C/svg%3E"
   }
 
-  class Lazyload {
-    constructor (scope, event, options) {
-      if (jQuery.isPlainObject(scope)) {
-        options = scope
-        scope = null
-      } else if (jQuery.isPlainObject(event)) {
-        options = event
-        event = null
+  const $window = jQuery(window)
+  const $document = jQuery(document)
+
+  class PROlazyLoad {
+    constructor (selector, options) {
+      if (jQuery.isPlainObject(selector)) {
+        options = selector
+        selector = null
       }
       this._options = jQuery.extend({}, Default, options)
-      this._scope = scope && jQuery(scope)
-      this._event = event || 'scroll'
-      if (this._scope) {
-        this._scope.on(this._event, this._update.bind(this))
+      this._select = jQuery(selector || `[data-${jQuery.data.toKey(this._options.attribute)}]`)
+      if (this._select.length) {
+        this._scope = this._options.scope && jQuery(this._options.scope)
+        if (this._scope) {
+          this._scope.on(this._options.event, this._update.bind(this))
+        }
+        $window.on('scroll', this._update.bind(this))
+        $window.on('resize', this._update.bind(this))
+        $document.on(Events.UPDATE, this._update.bind(this))
+        $document.on(Events.RESET, this._reset.bind(this))
+        if (this._options.reset) {
+          $document.on(this._options.reset, this._reset.bind(this))
+        }
+        this._items = []
+        this._select.each((i, el) => this._load(el))
       }
-      window.addEventListener('scroll', this._update.bind(this))
-      window.addEventListener('resize', this._update.bind(this))
-      document.addEventListener(Events.UPDATE, this._update.bind(this))
-      document.addEventListener(Events.RESET, this._reset.bind(this))
-      if (this._options.reset) {
-        document.addEventListener(this._options.reset, this._reset.bind(this))
-      }
-      this._items = []
     }
 
     _load (element) {
-      const item = new Lazy(element, this._options)
-      item._appear()
-      this._items.push(item)
-      return this
+      if (!jQuery.data.getSet(element, DATA_KEY)) {
+        const item = new Lazy(element, this._options)
+        item._appear()
+        this._items.push(item)
+      }
     }
 
     _update () {
@@ -64,11 +71,11 @@ const Lazyload = ((jQuery, Util, window, document) => {
       this._items.forEach(item => item._appear() || counter++)
       if (!counter) {
         if (this._scope) {
-          this._scope.off(this._event, this._update)
+          this._scope.off(this._options.event, this._update)
         }
-        window.removeEventListener('scroll', this._update)
-        window.removeEventListener('resize', this._update)
-        document.removeEventListener(Events.UPDATE, this._update.bind(this))
+        $window.off('scroll', this._update)
+        $window.off('resize', this._update)
+        $document.off(Events.UPDATE, this._update.bind(this))
       }
       return this
     }
@@ -76,15 +83,10 @@ const Lazyload = ((jQuery, Util, window, document) => {
     _reset () {
       this._items.forEach(item => item._reset())
       this._items = []
-      return this
     }
 
-    static update () {
-      return document.dispatchEvent(Util.newEvent(Events.UPDATE))
-    }
-
-    static reset () {
-      return document.dispatchEvent(Util.newEvent(Events.RESET))
+    static get name () {
+      return NAME
     }
 
     static get version () {
@@ -95,11 +97,17 @@ const Lazyload = ((jQuery, Util, window, document) => {
       return Default
     }
 
+    static update () {
+      return $document.trigger(jQuery.Event(Events.UPDATE))
+    }
+
+    static reset () {
+      return $document.trigger(jQuery.Event(Events.RESET))
+    }
+
     static _jQuery () {
-      const instance = new Lazyload(...arguments)
-      return this.each(function () {
-        instance._load(this)
-      })
+      (() => new PROlazyLoad(this, ...arguments))()
+      return this
     }
   }
 
@@ -115,7 +123,8 @@ const Lazyload = ((jQuery, Util, window, document) => {
     }
 
     _appear () {
-      let res = ['loading', 'loaded', 'error', 'reset'].indexOf(this._dataKey) >= 0
+      // let res = ['loading', 'loaded', 'error', 'reset'].indexOf(this._dataKey) >= 0
+      let res = !!this._dataKey
       if (!res) {
         res = !this._above() && !this._below() && !this._right() && !this._left()
         if (res) {
@@ -130,7 +139,7 @@ const Lazyload = ((jQuery, Util, window, document) => {
     }
 
     _loader () {
-      const path = Util.getDataSet(this._element, this._options.attribute)
+      const path = jQuery.data.getSet(this._element, this._options.attribute)
       this._dataKey = 'loading'
       if (this._options.mask) {
         if (this._element.tagName === 'IMG') {
@@ -213,27 +222,32 @@ const Lazyload = ((jQuery, Util, window, document) => {
         this._element.style.backgroundImage = `url("${this._options.mask}")`
       }
       this._dataKey = 'reset'
-      delete this
+      // delete this
     }
 
     get _dataKey () {
-      return Util.getDataSet(this._element, DATA_KEY)
+      return jQuery.data.getSet(this._element, DATA_KEY)
     }
 
     set _dataKey (value) {
-      return Util.setDataSet(this._element, DATA_KEY, value)
+      return jQuery.data.setSet(this._element, DATA_KEY, value)
     }
   }
 
-  jQuery.fn[NAME] = Lazyload._jQuery
-  jQuery.fn[NAME].Constructor = Lazyload
+  // jQuery.LazyLoad = PROlazyLoad
+
+  jQuery.fn[NAME] = PROlazyLoad._jQuery
+  jQuery.fn[NAME].Constructor = PROlazyLoad
   jQuery.fn[NAME].noConflict = function () {
     jQuery.fn[NAME] = JQUERY_NO_CONFLICT
-    return Lazyload._jQuery
+    return PROlazyLoad._jQuery
   }
-  jQuery[NAME] = (...args) => jQuery(`[data-${Util.toDataKey(Default.attribute)}]`)[NAME](...args)
+  jQuery[NAME] = function () {
+    (() => new PROlazyLoad(...arguments))()
+    return this
+  }
 
-  return Lazyload
-})(jQuery, Util, window, document)
+  return PROlazyLoad
+})(window, document, jQuery)
 
-export default Lazyload
+export default PROlazyLoad

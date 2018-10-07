@@ -1,7 +1,7 @@
 import jQuery from 'jquery'
-import Util from './util'
+import '../helpers/dataset'
 
-const ScrollTo = ((jQuery, Util) => {
+const ScrollTo = (function (jQuery) {
   const NAME = 'scrollTo'
   const VERSION = '0.0.1'
 
@@ -19,11 +19,11 @@ const ScrollTo = ((jQuery, Util) => {
     }
 
     _load (element) {
-      const selector = Util.getDataSet(element, DATA_KEY) || element.getAttribute('href')
+      const selector = jQuery.data.getSet(element, DATA_KEY) || element.getAttribute('href')
       if (selector) {
         const options = jQuery.extend({},
           this._options,
-          Util.getDataSet(element, DATA_KEY, ...Object.keys(Default))
+          jQuery.data.getSet(element, DATA_KEY, ...Object.keys(Default))
         )
         const obj = jQuery(element).click(event => {
           event.preventDefault()
@@ -60,7 +60,8 @@ const ScrollTo = ((jQuery, Util) => {
       if (typeof options === 'function') {
         callback = options
         options = {}
-      } else if (typeof options === 'number') {
+      }
+      if (typeof options === 'number') {
         options = { offset: options }
       }
       return [
@@ -95,9 +96,9 @@ const ScrollTo = ((jQuery, Util) => {
     jQuery.fn[NAME] = JQUERY_NO_CONFLICT
     return ScrollTo._jQuery
   }
-  jQuery[NAME] = (...args) => jQuery(`[data-${Util.toDataKey(DATA_KEY)}]`)[NAME](...args)
+  jQuery[NAME] = (...args) => jQuery(`[data-${jQuery.data.toKey(DATA_KEY)}]`)[NAME](...args)
 
   return ScrollTo
-})(jQuery, Util)
+})(jQuery)
 
 export default ScrollTo

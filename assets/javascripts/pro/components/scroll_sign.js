@@ -1,7 +1,7 @@
 import jQuery from 'jquery'
-import Util from './util'
+import '../helpers/dataset'
 
-const ScrollSign = ((jQuery, Util) => {
+const ScrollSign = (function (jQuery) {
   const NAME = 'scrollSign'
   const VERSION = '0.0.1'
 
@@ -16,8 +16,10 @@ const ScrollSign = ((jQuery, Util) => {
 
   const Default = {
     breakpoint: 200,
-    class: 'show',
+    class: 'show'
   }
+
+  const $document = jQuery(document)
 
   class ScrollSign {
     constructor (options, callback) {
@@ -34,9 +36,9 @@ const ScrollSign = ((jQuery, Util) => {
     _load (element) {
       const options = jQuery.extend({},
         this._options,
-        Util.getDataSet(element, DATA_KEY, ...Object.keys(Default))
+        jQuery.data.getSet(element, DATA_KEY, ...Object.keys(Default))
       )
-      const breakpoint = Util.getDataSet(element, DATA_KEY)
+      const breakpoint = jQuery.data.getSet(element, DATA_KEY)
       if (breakpoint) {
         options.breakpoint = breakpoint
       }
@@ -58,11 +60,11 @@ const ScrollSign = ((jQuery, Util) => {
     }
 
     static show () {
-      return document.dispatchEvent(Util.newEvent(Events.SHOW))
+      return $document.trigger(jQuery.Event(Events.SHOW))
     }
 
     static hide () {
-      return document.dispatchEvent(Util.newEvent(Events.HIDE))
+      return $document.trigger(jQuery.Event(Events.HIDE))
     }
 
     static get version () {
@@ -87,9 +89,9 @@ const ScrollSign = ((jQuery, Util) => {
     jQuery.fn[NAME] = JQUERY_NO_CONFLICT
     return ScrollSign._jQuery
   }
-  jQuery[NAME] = (...args) => jQuery(`[data-${Util.toDataKey(DATA_KEY)}]`)[NAME](...args)
+  jQuery[NAME] = (...args) => jQuery(`[data-${jQuery.data.toKey(DATA_KEY)}]`)[NAME](...args)
 
   return ScrollSign
-})(jQuery, Util)
+})(jQuery)
 
 export default ScrollSign
